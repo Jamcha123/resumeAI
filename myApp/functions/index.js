@@ -1,14 +1,11 @@
-import * as functions from 'firebase-functions'
-import admin from 'firebase-admin'
-import OpenAI from 'openai/index.mjs'
-import Stripe from 'stripe'
-import fs from 'fs'
+import functions from 'firebase-functions'
+import OpenAI from 'openai'
 
 const ai = new OpenAI({
     apiKey: ""
 })
 
-export const fileRead = functions.https.onRequest({cors: true}, async (req, res) => {
+export const reader = functions.https.onRequest({cors: true}, async (req, res) => {
     const file = req.query.file
     const length = req.query.length
     const response = await ai.chat.completions.create({

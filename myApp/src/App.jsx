@@ -23,7 +23,7 @@ function AddResume(){
       })
       const readData = await reader
 
-      const link = "http://127.0.0.1:5001/resumeai-2fc2a/us-central1/fileRead?file=" + readData + "&length=" + length.value; 
+      const link = "https://reader-xofmanudfa-uc.a.run.app?file=" + readData + "&length=" + length.value; 
       const getData = await axios.get(link)
       
       const newFile = document.createElement("a")
@@ -34,7 +34,8 @@ function AddResume(){
   })
   return(
     <form action="" method="get" id="form" className="relative w-[40em] h-[50em] m-auto p-[0] bg-transparent flex flex-col align-middle justify-evenly text-center ">
-      <h1 className="text-2xl text-white mt-[5%]">Be patient, AI can take some time</h1>
+      <h1 className="text-2xl text-white mt-[0%]">ResumeAI - A CV improver</h1>
+      <h1 className="text-2xl text-white mt-[0%]">Be patient, AI can take some time</h1>
       <div className="flex flex-col align-middle justify-evenly text-center min-h-[fit-content] min-w-[100%]">
         <div className="flex flex-row align-middle justify-evenly text-center min-h-[8em] min-w-[100%]">
           <input type="number" name="lines" id="lines" required placeholder="better CV: number of words " className="relative cursor-pointer bg-slate-900 w-[20em] underline underline-offset-4 h-[4em] m-auto p-[0] text-center text-xl text-white" />
