@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'; 
-import { onAuthStateChanged, getAuth } from 'firebase/auth'; 
+import { onAuthStateChanged, getAuth, signInAnonymously } from 'firebase/auth'; 
 import { initializeAppCheck, ReCaptchaEnterpriseProvider } from 'firebase/app-check'
 import { getFirestore } from 'firebase/firestore'
 
@@ -21,6 +21,7 @@ const appcheck = initializeAppCheck(app, {
 })
 
 const auth = getAuth(app)
+signInAnonymously(auth)
 
 const firestore = getFirestore(app); 
 
