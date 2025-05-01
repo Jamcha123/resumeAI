@@ -1,5 +1,5 @@
 {
-  "name": "resumeainpm",
+  "name": "resume-creator",
   "version": "1.0.0",
   "description": "resumeainpm is a npm package that usings openAI to create resumes",
   "main": "index.js",

@@ -4,9 +4,13 @@ import {fileURLToPath} from 'url'
 import {dirname} from 'path'
 
 
-class resumeAI{
+export default class resumeAI{
     async improve_resume(openai_secret, options={"file_name": "1234", "word_limit": "1234"}){
         const ai = new OpenAI({apiKey: openai_secret})
+
+        if(Number.isInteger(options["word_limit"]) === false){
+            throw new Error(options["word_limit"] + " is not an integer")
+        }
 
         const __filename = fileURLToPath(import.meta.url)
         const __dirname = dirname(__filename)
@@ -45,6 +49,10 @@ class resumeAI{
     }
     async create_resume(openai_secret, options={"CV_about": "1234", "word_limit": "1234"}){
         const ai = new OpenAI({apiKey: openai_secret})
+
+        if(Number.isInteger(options["word_limit"]) === false){
+            throw new Error(options["word_limit"] + " is not an integer")
+        }
         
         const response = await ai.chat.completions.create({
             model: "gpt-4o", 
