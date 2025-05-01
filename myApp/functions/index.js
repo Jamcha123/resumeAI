@@ -2,7 +2,7 @@ import functions from 'firebase-functions'
 import OpenAI from 'openai'
 
 const ai = new OpenAI({
-    apiKey: ""
+    apiKey: "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"
 })
 
 export const reader = functions.https.onRequest({cors: true}, async (req, res) => {

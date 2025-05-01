@@ -4,7 +4,7 @@ import { initializeAppCheck, ReCaptchaEnterpriseProvider } from 'firebase/app-ch
 import { getFirestore } from 'firebase/firestore'
 
 const config = {
-    apiKey: "",
+    apiKey: "AIzaSyAHSF2tc71BuMiZbdAC5Yw2kZz1LX61yLE",
     authDomain: "resumeai-2fc2a.firebaseapp.com",
     projectId: "resumeai-2fc2a",
     storageBucket: "resumeai-2fc2a.firebasestorage.app",
