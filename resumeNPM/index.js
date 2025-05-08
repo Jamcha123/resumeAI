@@ -65,8 +65,7 @@ export default class resumeAI{
                 }
             ]
         })
-        fs.createWriteStream("cv.pdf", "utf-8").write(response.choices[0].message["content"])
-        return "cv.pdf is created"
+        return response.choices[0].message["content"]
     }    
 
 }

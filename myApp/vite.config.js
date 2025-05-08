@@ -6,14 +6,8 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
-    proxy: {
-      "/api": {
-        target:"https://reader-xofmanudfa-uc.a.run.app", 
-        changeOrigin: true
-      }
-    }, 
     cors: {
-      origin: "https://reader-xofmanudfa-uc.a.run.app", 
+      origin: true, 
       credentials: false, 
       methods: "GET"
     }
