@@ -1,20 +1,32 @@
 import { useState, useEffect, useRef } from 'react'
-import {motion} from 'framer-motion'
+import {color, motion} from 'framer-motion'
 import axios from 'axios';
 import './App.css'
 import './fire.js'
+import copy from './assets/copy.png'
+import git from './assets/github.png'
+import google from './assets/google.png'
+import { initializeApp } from 'firebase/app';
+import { getAuth, GoogleAuthProvider, GithubAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
 
-function AddNavBar(){
-  return(
-    <nav className="fixed w-[100%] h-[fit-content] m-auto p-[0] top-[0%] z-[200] bg-transparent ">
-      <ul className="flex flex-row align-middle justify-evenly text-start relative w-[100%] m-auto p-[0] h-[2em] ">
-        <li className="text-xl underline underline-offset-2 text-white"><a href="#0">Landing Page</a></li>
-        <li className="text-xl underline underline-offset-2 text-white"><a href="#1">ResumeAI creator</a></li>
-        <li className="text-xl underline underline-offset-2 text-white"><a href="#2">ResumeAI API</a></li>
-      </ul>
-    </nav>
-  )
+const config = {
+  apiKey: "AIzaSyAHSF2tc71BuMiZbdAC5Yw2kZz1LX61yLE",
+  authDomain: "resumeai-2fc2a.firebaseapp.com",
+  projectId: "resumeai-2fc2a",
+  storageBucket: "resumeai-2fc2a.firebasestorage.app",
+  messagingSenderId: "152728544431",
+  appId: "1:152728544431:web:1bac8097c7f1551de2e05a",
+  measurementId: "G-ZCRJFZRSXP"
 }
+const app = initializeApp(config)
+
+const auth = getAuth(app)
+
+const google1 = new GoogleAuthProvider()
+
+const git1 = new GithubAuthProvider()
+
+
 export default function App(){
   useEffect(() => {
     const form1 = document.getElementById("form1")
@@ -23,7 +35,7 @@ export default function App(){
 
     form1.addEventListener("submit", async (e) => {
       e.preventDefault()
-      const link = "http://127.0.0.1:5001/resumeai-2fc2a/us-central1/web_resume?text=" + topic.value + "&words=" + words.value
+      const link = "https://web-resume-xofmanudfa-uc.a.run.app?text=" + topic.value + "&words=" + words.value
       const webby = await axios.get(link)
 
       const file = document.createElement("a")
@@ -31,11 +43,20 @@ export default function App(){
       file.download = "resume.txt"
       file.click()
     })
+    onAuthStateChanged(auth, async (user) => {
+      if(user != null){
+        document.getElementById("developer_portal").style.display = "flex"
+        const link = "https://api-resume-xofmanudfa-uc.a.run.app/?topic=corrupt%20poiltician&words=40"
+        document.getElementById("link").href = link
+      }else{
+
+        document.getElementById("developer_portal").style.display = "flex"
+      }
+    })
   })
   return(
     <div className="relative w-[100%] h-[100%] m-auto p-[0] bg-transparent flex flex-col align-middle justify-center text-center  ">
-      <AddNavBar></AddNavBar>
-      <section className="relative w-[100%] h-[100vh] m-auto p-[0] bg-transparent overflow-hidden flex flex-col align-middle justify-center text-center ">
+      <section id="0" className="relative w-[100%] h-[100vh] m-auto p-[0] bg-transparent overflow-hidden flex flex-col align-middle justify-center text-center ">
         <div className="relative w-[100%] h-[50%] m-auto p-[0] bg-transparent flex flex-row align-middle justify-center text-center ">
           <div className="relative w-[fit-content] md:w-[50%] h-[150%] z-[100] md:translate-x-[-40%] translate-y-[20%] bg-transparent m-auto p-[0] flex flex-col align-middle justify-center text-center ">
             <div className="flex flex-row align-middle justify-center md:justify-start md:ml-[5%] text-start relative w-[100%] m-auto p-[0] min-h-[5em] overflow-hidden ">
@@ -75,8 +96,27 @@ export default function App(){
           </form>
         </div>
       </section>
-      <section id="2" className="relative w-[100%] h-[100vh] m-auto p-[0] overflow-hidden flex flex-col align-middle justify-center bg-sky-800 text-center">
-
+      <section id="2" className="relative w-[100%] min-h-[75vh] max-h-[fit-content] mt-[0%] m-auto p-[0] overflow-hidden flex flex-col align-middle justify-center bg-sky-800 text-center">
+        <h1 className="text-2xl text-white mt-[10%] ">ResumeAI developer API</h1>
+        <div id="developer_portal" className="flex flex-col align-middle justify-center text-center relative w-[100%] h-[20%] m-auto p-[0] bg-transparent">
+          <div className="relative w-[50%] h-[40%] m-auto p-[0] flex flex-col align-middle justify-center text-center bg-transparent">
+            <div className="relative w-[100%] h-[5vh] m-auto p-[0] bg-gray-800 flex flex-row align-middle justify-center text-center ">
+              <div className="relative w-[90%] h-[100%] m-auto p-[0] flex flex-col align-middle justify-center text-center ">
+                <div className="relative w-[100%] h-[75%] m-auto p-[0] flex flex-row align-middle justify-center text-center ">
+                  <div className="relative w-[50%] h-[100%] m-auto p-[0] bg-transparent flex flex-row align-middle justify-end text-end ">
+                    <a className="text-violet-400 text-xl underline underline-offset-4  " id="link">API link</a>
+                  </div>
+                  <div className="relative w-[15%] h-[100%] m-auto p-[0] bg-transparent "></div>
+                </div>
+              </div>
+              <div className="relative w-[10%] h-[100%] m-auto p-[0] flex flex-col align-middle justify-center text-center ">
+                <div className="relative w-[100%] h-[100%] m-auto p-[0] flex flex-row align-middle justify-center text-center ">
+                  <motion.img id="copied" className="cursor-pointer" onClick={onAuthStateChanged(auth, (user) => {window.navigator.clipboard.writeText("https://api-resume-xofmanudfa-uc.a.run.app/?topic=corrupt%20poiltician&words=40")})} whileHover={{scale: 1.1}} whileTap={{scale: 0.5}} initial={{scale: 0.75}} src={copy} width={50 + "%"} height={100 + "%"} alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   )

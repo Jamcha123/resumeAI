@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app'; 
-import { onAuthStateChanged, getAuth, signInAnonymously } from 'firebase/auth'; 
+import { onAuthStateChanged, getAuth, signInAnonymously, GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from 'firebase/auth'; 
 import { initializeAppCheck, ReCaptchaEnterpriseProvider } from 'firebase/app-check'
-import { getFirestore } from 'firebase/firestore'
+import { collection, doc, getDoc, getFirestore } from 'firebase/firestore'
 
 const config = {
     apiKey: "",
@@ -23,9 +23,9 @@ const appcheck = initializeAppCheck(app, {
 const auth = getAuth(app)
 signInAnonymously(auth)
 
-const firestore = getFirestore(app); 
+const db = getFirestore(app); 
 
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
     if(user == null){
         console.log("user, not found")
     }else{
