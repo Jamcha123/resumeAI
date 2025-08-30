@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+h1, li a, p, button, input{
+    font-family: "Maven Pro", sans-serif;
+    font-weight: 400;
+}
+
+@layer components{
+    canvas{
+        @apply relative w-[100%] h-[100%] m-auto p-[0] bg-transparent
+    }
+    .info{
+        @apply text-xl text-white
+    }
+}
