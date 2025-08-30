@@ -11,7 +11,7 @@ import { doc, getDoc, getFirestore, setDoc } from 'firebase/firestore'
 
 ChartJS.register(BarController, BarElement, LinearScale, CategoryScale)
 const config = {
-  apiKey: "AIzaSyBnxam8lJyhaIotZZl2WKJ27WdMoVc2hfM",
+  apiKey: "key",
   authDomain: "cv-ai-e2d4d.firebaseapp.com",
   projectId: "cv-ai-e2d4d",
   storageBucket: "cv-ai-e2d4d.firebasestorage.app",
